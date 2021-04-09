@@ -1,0 +1,9 @@
+.Controls{
+  display: block;
+  padding-top: 20px;
+}
+
+.Controls>button:first-child {
+  margin-right: 15px;
+}
+
