@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+//types
 type Props = {
   disabled?: boolean;
   onClick: (e: React.MouseEvent) => void;

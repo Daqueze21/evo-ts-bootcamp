@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Status from './components/Status/Status';
 import Controls from './components/Controls/Controls';
+import VisualizationChart from './components/VisualizationChart/VisualizationChart';
+import { generateChartArray} from './lib/utils/utils';
 
 //style
 import './App.css';
@@ -11,36 +13,53 @@ type Props = {
 };
 
 type State = {
-  status: boolean;
-  pause: boolean;
+  isFinished: boolean;
+  IsRunning: boolean;
+  chartArray?: number[];
 };
 
 class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { status: false, pause: false };
+    this.state = {
+      isFinished: false,
+      IsRunning: false,
+      chartArray: [],
+    };
+  }
+
+  componentDidMount() {
+    console.log('did');
+    
+    this.newSetHandler();
   }
 
   newSetHandler = () => {
-    console.log('new set');
+    this.setState({
+      chartArray: generateChartArray(),
+      isFinished: false,
+      IsRunning: false,
+    });
   };
 
   pauseHandler = () => {
     this.setState((prevState) => {
-      return { pause: !prevState.pause };
+      return { IsRunning: !prevState.IsRunning };
     });
+    console.log('pause');
   };
 
   render(): React.ReactNode {
     return (
       <div className='App'>
         <Header />
+        <VisualizationChart chart={this.state.chartArray} />
         <Controls
-          pause={this.state.pause}
+          pause={this.state.IsRunning}
           startPause={this.pauseHandler}
           newSet={this.newSetHandler}
         />
-        <Status status={this.state.status} />
+        <Status status={this.state.isFinished} />
       </div>
     );
   }
