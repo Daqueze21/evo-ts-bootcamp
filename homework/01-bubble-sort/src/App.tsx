@@ -3,7 +3,11 @@ import Header from './components/Header/Header';
 import Status from './components/Status/Status';
 import Controls from './components/Controls/Controls';
 import VisualizationChart from './components/VisualizationChart/VisualizationChart';
-import { generateChartArray} from './lib/utils/utils';
+import {
+  bubbleSortStep,
+  initState,
+  isEqualArrays
+} from './lib/utils/utils';
 
 //style
 import './App.css';
@@ -12,54 +16,73 @@ import './App.css';
 type Props = {
 };
 
-type State = {
+export type StateTypes = {
   isFinished: boolean;
   IsRunning: boolean;
-  chartArray?: number[];
+  chartArray: number[];
 };
 
-class App extends Component<Props, State> {
+class App extends Component<Props, StateTypes> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      isFinished: false,
-      IsRunning: false,
-      chartArray: [],
-    };
+    this.state = initState();
   }
 
-  componentDidMount() {
-    console.log('did');
-    
-    this.newSetHandler();
-  }
+  private timer?: NodeJS.Timer;
 
-  newSetHandler = () => {
-    this.setState({
-      chartArray: generateChartArray(),
-      isFinished: false,
-      IsRunning: false,
-    });
+  private newSetHandler = () => {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+    this.setState(initState());
   };
 
-  pauseHandler = () => {
-    this.setState((prevState) => {
-      return { IsRunning: !prevState.IsRunning };
-    });
-    console.log('pause');
+  private pauseHandler = (): void => {
+    this.state.IsRunning ? this.pause() : this.sortingStart();
   };
 
-  render(): React.ReactNode {
+  private pause = (): void => {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+    this.setState({ IsRunning: false });
+  };
+
+  private sortingStart = (): void => {
+    this.setState({ IsRunning: true });
+    this.timer = setInterval(() => this.sortingStep(), 100);
+  };
+
+  private sortingStep = (): void => {
+    const sortedArray = bubbleSortStep(this.state.chartArray);
+
+    if (isEqualArrays(this.state.chartArray, sortedArray)) {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+      this.setState({
+        isFinished: true,
+      });
+      return;
+    }
+    this.setState({ chartArray: sortedArray });
+  };
+
+  public render(): React.ReactNode {
+    const { IsRunning, isFinished, chartArray } = this.state;
+    const { pauseHandler, newSetHandler } = this;
+
     return (
       <div className='App'>
         <Header />
-        <VisualizationChart chart={this.state.chartArray} />
+        <VisualizationChart chart={chartArray} />
         <Controls
-          pause={this.state.IsRunning}
-          startPause={this.pauseHandler}
-          newSet={this.newSetHandler}
+          isFinished={isFinished}
+          pause={IsRunning}
+          startPause={pauseHandler}
+          newSet={newSetHandler}
         />
-        <Status status={this.state.isFinished} />
+        <Status status={isFinished} />
       </div>
     );
   }
