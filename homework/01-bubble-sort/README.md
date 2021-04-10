@@ -1,3 +1,13 @@
+# TypeScript Bootcamp
+## Bubble Sort Visualization task
+
+### Task
+
+https://github.com/evolution-gaming/typescript-bootcamp/tree/main/homeworks/01-bubble-sort
+
+### Deploy project link
+
+https://bubble-sort-daqueze21.netlify.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
