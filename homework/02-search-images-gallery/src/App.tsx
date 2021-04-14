@@ -1,11 +1,15 @@
 import React from 'react';
-import './App.css';
+import {Navbar} from './components/Navbar/Navbar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+
 
 function App() {
+
   return (
-    <div className="App">
-      Hello world
-    </div>
+    <>
+      <Navbar />
+      <ImageGallery />
+    </>
   );
 }
 
