@@ -1,8 +1,8 @@
-import {Node, TraverseType, TreeNode} from "./common";
+import {TraverseType, TreeNode} from "./common";
 
 export interface BinaryTreeInt<T> {
-  getRoot(): TreeNode<T>;
-  setRoot(node: TreeNode<T>): this;
+  getTree(): TreeNode<T>;
+  setTree(node: TreeNode<T>): this;
   traverse(traverseType: TraverseType): T[];
   getColumn(column: number): T[];
 }
@@ -13,11 +13,11 @@ export class BinaryTree<T> implements BinaryTreeInt<T> {
   constructor(protected root: TreeNode<T>) {
   };
 
-  getRoot(): TreeNode<T> {
+  getTree(): TreeNode<T> {
     return this.root
   };
 
-  setRoot(root: TreeNode<T>): this {
+  setTree(root: TreeNode<T>): this {
     this.root = root;
     return this
   };
@@ -82,7 +82,7 @@ export class BinaryTree<T> implements BinaryTreeInt<T> {
       if (node.right) {
         iterate(node.right, current + 1)
       };
-    }
+    };
 
     iterate(this.root, 0)
     return result
