@@ -20,3 +20,7 @@ export class TreeNode<T> {
     this.right = right
   }
 }
+
+export function sort(array: number[]) {
+  return array.sort((a, b) => a - b)
+}
