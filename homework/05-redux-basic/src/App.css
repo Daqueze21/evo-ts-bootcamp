@@ -1,4 +1,32 @@
-.App {
+.app {
   text-align: center;
+  margin: 1em auto;
+  width: 40%;
 }
 
+.BlockWrapper{
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid darkslategrey;
+  padding: 1em 0;
+  border-bottom: none;
+}
+
+.BlockWrapper:last-child{
+  border-bottom: 1px solid darkslategrey;
+}
+
+.BlockName {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.controls input {
+  width: 150px;
+  margin-right: 2em;
+}
+.controls button {
+  width: 100px;
+}
