@@ -1,3 +1,16 @@
+# TypeScript Bootcamp
+## Redux basic task
+
+### Task
+
+https://github.com/evolution-gaming/typescript-bootcamp/blob/main/homeworks/05-redux-basic/002-basic-redux.md
+
+### Deploy project link
+
+https://redux-task-daqueze21.netlify.app/
+# Getting Started with Create React App
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
