@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { PizzaItem } from "./PizzaItem";
 import * as R from "ramda";
 
-interface PizzaListProps {
-    pizza: {
-        _id: string;
-        name: string;
-        price: number;
-    }[];
-    onAdd: (_id: string) => void;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { State, Pizza } from '../types';
+import { addPizza } from '../redux/reducers/basket/basket-reducer';
 
-export function PizzaList({ pizza, onAdd }: PizzaListProps) {
-    return R.map((p) =>
-        <PizzaItem
-            key={p._id}
-            _id={p._id}
-            name={p.name}
-            price={p.price}
-            onAdd={onAdd}
-        />, pizza);
+
+export function PizzaList() {
+    const dispatch = useDispatch();
+    const pizzas = useSelector<State, Pizza[]>((state) => state.pizza);
+    
+    const onAdd = useCallback(
+        (id: string) => dispatch(addPizza(id)),
+        [dispatch]
+    );
+
+    return (
+        <>
+            {R.map((p) =>
+                <PizzaItem
+                    key={p._id}
+                    _id={p._id}
+                    name={p.name}
+                    price={p.price}
+                    onAdd={onAdd}
+                />, pizzas)
+            }
+        </>
+    )
 }

@@ -1,3 +1,4 @@
+import {Pizza} from "../types";
 
 export async function getPizza() {
     return {
@@ -22,6 +23,6 @@ export async function getPizza() {
                 price: 20.45,
                 _id: "606a07ea1a45d242a7b77fe3"
             }
-        ]
+        ] as Pizza[]
     };
 }
