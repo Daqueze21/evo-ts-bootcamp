@@ -16,19 +16,24 @@ export type State = {
 };
 
 export enum PizzasActionTypes {
-  PIZZAS_LOADED = "pizzaList/PIZZAS_LOADED"
+  PIZZA_VIEWED = "pizzaList/PIZZAS_VIEWED"
 };
 export type PizzasLoadedAction = {
-  type: PizzasActionTypes.PIZZAS_LOADED,
+  type: PizzasActionTypes.PIZZA_VIEWED,
   pizzas: Pizza[]
 };
 
 export enum BasketActionsTypes {
-  ORDER = 'basket/ORDER',
   ADDED = 'basket/PIZZA_ADDED_TO_BASKET',
   REMOVED = 'basket/PIZZA_REMOVED_FROM_BASKET',
 };
 
 export type PayloadAction<T extends string = string, P = any> = Action<T> & {
   payload: P
+};
+
+export type Event = {
+  eventName: string;
+  pizzaName?: string;
+  pizzaPrice?: number;
 };

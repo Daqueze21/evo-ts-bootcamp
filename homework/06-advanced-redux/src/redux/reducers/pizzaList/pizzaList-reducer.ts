@@ -21,7 +21,7 @@ export const pizzaListReducer = (
     action: AnyAction,
 ): PizzaListState => {
     switch (action.type) {
-        case PizzasActionTypes.PIZZAS_LOADED:
+        case PizzasActionTypes.PIZZA_VIEWED:
             return action.pizzas
         default:
             return state
