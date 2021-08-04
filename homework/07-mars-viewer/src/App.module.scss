@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #2d303a;
+  font-size: 16px;
+  background: #F3EDFD;
+}
+
+
+
+.App {
+  text-align: center;
+  width: 100%;
+
+  .elem {
+    border: 1px solid black;
+    color: red;
+  }
+
+  .main{
+    width: 100%;
+  }
+}
+
+
+
